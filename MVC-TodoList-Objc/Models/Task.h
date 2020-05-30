@@ -16,11 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonnull, nonatomic, readwrite) NSString* title;
 @property (nullable, nonatomic, readwrite) NSString* subTitle;
 @property (nullable, nonatomic, readwrite) NSString* createAt;
-@property (nonatomic, readwrite) BOOL* isFinished;
+@property (nonatomic, readwrite) NSNumber* isFinished;
 
--(void) completeTask:(NSString*) uuid: (NSString*) title: (NSString*) subTitle: (NSString *) createAt: (BOOL *) isFinished;
--(void) initTask:(NSString *) title: (NSString *) subTitle: (BOOL *) isFinished;
--(void) toggle;
+-(void) completeTask:(NSString*) uuid: (NSString*) title: (NSString*) subTitle: (NSString *) createAt: (NSNumber *) isFinished;
+-(void) initTask:(NSString *) title: (NSString *) subTitle: (NSNumber *) isFinished;
 @end
 
 NS_ASSUME_NONNULL_END

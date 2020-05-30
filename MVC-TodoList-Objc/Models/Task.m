@@ -11,7 +11,7 @@
 
 @implementation Task
 
-- (void)completeTask:(NSString *)uuid :(NSString *)title :(NSString *)subTitle :(NSString *)createAt :(BOOL *)isFinished {
+- (void)completeTask:(NSString *)uuid :(NSString *)title :(NSString *)subTitle :(NSString *)createAt :(NSNumber *)isFinished {
 	self.id = uuid;
 	self.title = title;
 	self.subTitle = subTitle;
@@ -19,7 +19,7 @@
 	self.isFinished = isFinished;
 }
 
-- (void)initTask:(NSString *)title :(NSString *)subTitle :(BOOL *)isFinished {
+- (void)initTask:(NSString *)title :(NSString *)subTitle :(NSNumber *)isFinished {
 	NSUUID* uuid = [NSUUID UUID];
 	
 	NSDate* date = [[NSDate alloc] init];
@@ -32,14 +32,6 @@
 	self.subTitle = subTitle;
 	self.createAt = dating;
 	self.isFinished = isFinished;
-}
-
-- (void)toggle {
-	if(self.isFinished == true) {
-		self.isFinished = false;
-	} else {
-		self.isFinished = true;
-	}
 }
 
 @end

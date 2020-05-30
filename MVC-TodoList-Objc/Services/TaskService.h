@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TaskService : NSObject
 -(void) createTask: (Task* ) task;
 -(void) deleteTask: (NSString* ) id;
+-(void) updateTask: (Task* ) task;
+-(NSArray<Task*>*) readTasks;
 @end
 
 NS_ASSUME_NONNULL_END
