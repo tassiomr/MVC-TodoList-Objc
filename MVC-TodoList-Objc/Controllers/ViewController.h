@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
+#import "TaskService.h"
 
-@interface ViewController : UIViewController
-
-
+@interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+-(void) getTasks;
 @end
 
