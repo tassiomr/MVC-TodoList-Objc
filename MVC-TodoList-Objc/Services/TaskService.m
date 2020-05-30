@@ -51,7 +51,6 @@
 	}
 }
 
-
 - (NSArray<Task *> *)readTasks {
 	AppDelegate *delegate = [[AppDelegate alloc] init];
 	NSManagedObjectContext *managedContext = [delegate persistentContainer].viewContext;
@@ -75,5 +74,28 @@
 	}
 	
 	return tasks;
+}
+
+- (void)updateTask:(Task *)task {
+	AppDelegate *delegate = [[AppDelegate alloc] init];
+	NSManagedObjectContext *managedContext = [delegate persistentContainer].viewContext;
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id = %@", task.id]];
+	
+	NSError *error = nil;
+	NSArray *results = [managedContext executeRequest:fetchRequest error:&error];
+	
+	if(!results) {
+		[error userInfo];
+		abort();
+	} else {
+		NSObject *taskRaw = results[0];
+		[taskRaw setValue:task.id forKey:@"id"];
+		[taskRaw setValue:task.title forKey:@"title"];
+		[taskRaw setValue:task.subTitle forKey:@"subTitle"];
+		[taskRaw setValue:task.createAt forKey:@"createAt"];
+		
+		[managedContext save:&error];
+	}
 }
 @end
