@@ -15,6 +15,8 @@
 		18A481DE2482CE3F002F6B25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18A481DD2482CE3F002F6B25 /* Assets.xcassets */; };
 		18A481E12482CE3F002F6B25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A481DF2482CE3F002F6B25 /* LaunchScreen.storyboard */; };
 		18A481E42482CE3F002F6B25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A481E32482CE3F002F6B25 /* main.m */; };
+		18A481ED2482CE8F002F6B25 /* TaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A481EC2482CE8F002F6B25 /* TaskService.m */; };
+		18A481F12482CEBB002F6B25 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A481F02482CEBB002F6B25 /* Task.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,10 @@
 		18A481E02482CE3F002F6B25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18A481E22482CE3F002F6B25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18A481E32482CE3F002F6B25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18A481EB2482CE8F002F6B25 /* TaskService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskService.h; sourceTree = "<group>"; };
+		18A481EC2482CE8F002F6B25 /* TaskService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskService.m; sourceTree = "<group>"; };
+		18A481EF2482CEBB002F6B25 /* Task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		18A481F02482CEBB002F6B25 /* Task.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,8 @@
 		18A481CD2482CE3D002F6B25 /* MVC-TodoList-Objc */ = {
 			isa = PBXGroup;
 			children = (
+				18A481EE2482CEA4002F6B25 /* Models */,
+				18A481EA2482CE68002F6B25 /* Services */,
 				18A481CE2482CE3D002F6B25 /* AppDelegate.h */,
 				18A481CF2482CE3D002F6B25 /* AppDelegate.m */,
 				18A481D12482CE3D002F6B25 /* SceneDelegate.h */,
@@ -77,6 +85,24 @@
 				18A481DA2482CE3D002F6B25 /* MVC_TodoList_Objc.xcdatamodeld */,
 			);
 			path = "MVC-TodoList-Objc";
+			sourceTree = "<group>";
+		};
+		18A481EA2482CE68002F6B25 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				18A481EB2482CE8F002F6B25 /* TaskService.h */,
+				18A481EC2482CE8F002F6B25 /* TaskService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		18A481EE2482CEA4002F6B25 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				18A481EF2482CEBB002F6B25 /* Task.h */,
+				18A481F02482CEBB002F6B25 /* Task.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +175,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A481F12482CEBB002F6B25 /* Task.m in Sources */,
+				18A481ED2482CE8F002F6B25 /* TaskService.m in Sources */,
 				18A481E42482CE3F002F6B25 /* main.m in Sources */,
 				18A481D62482CE3D002F6B25 /* ViewController.m in Sources */,
 				18A481D02482CE3D002F6B25 /* AppDelegate.m in Sources */,
