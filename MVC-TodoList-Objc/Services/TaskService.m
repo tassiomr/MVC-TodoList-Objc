@@ -51,29 +51,31 @@
 	}
 }
 
-- (NSArray<Task *> *)readTasks {
-	AppDelegate *delegate = [[AppDelegate alloc] init];
-	NSManagedObjectContext *managedContext = [delegate persistentContainer].viewContext;
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+- (NSMutableArray<Task *> *)readTasks {
+	AppDelegate *appDelegate = [[AppDelegate alloc] init];
+	
+	NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
+	NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TaskEntity"];
+	
 	NSError *error = nil;
-	NSArray *results = [managedContext executeRequest:fetchRequest error:&error];
+	NSArray *result = [context executeFetchRequest:request error:&error];
+	
 	NSMutableArray<Task*> *tasks = [[NSMutableArray alloc] init];
 	
-	if(!results) {
+	if(!result) {
 		[error userInfo];
+		abort();
+		return nil;
+	} else {
+		for(NSManagedObject *object in result) {
+			Task *task = [[Task alloc] init];
+			[task completeTask:[object valueForKey:@"id"] :[object valueForKey:@"title"] :[object valueForKey:@"subTitle"] :[object valueForKey:@"createAt"] :[object valueForKey:@"isFinished"]];
+			
+			[tasks addObject:task];
+		}
+	
 		return tasks;
 	}
-	
-	for(int i = 0; i < results.count; i++) {
-		NSManagedObject *object = results[i];
-		
-		Task *task = [[Task alloc] init];
-		[task completeTask:[object valueForKey:@"id"] :[object valueForKey:@"title"] :[object valueForKey:@"subTitle"] :[object valueForKey:@"isFinished"] :[object valueForKey:@"createAt"]];
-		
-		[tasks addObject:task];
-	}
-	
-	return tasks;
 }
 
 - (void)updateTask:(Task *)task {

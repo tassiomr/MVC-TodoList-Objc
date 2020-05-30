@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) createTask: (Task* ) task;
 -(void) deleteTask: (NSString* ) id;
 -(void) updateTask: (Task* ) task;
--(NSArray<Task*>*) readTasks;
+-(NSMutableArray<Task*>*) readTasks;
 @end
 
 NS_ASSUME_NONNULL_END

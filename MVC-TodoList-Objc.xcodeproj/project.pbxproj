@@ -69,15 +69,14 @@
 		18A481CD2482CE3D002F6B25 /* MVC-TodoList-Objc */ = {
 			isa = PBXGroup;
 			children = (
+				18A481F32482F0B0002F6B25 /* Views */,
+				18A481F22482F0AA002F6B25 /* Controllers */,
 				18A481EE2482CEA4002F6B25 /* Models */,
 				18A481EA2482CE68002F6B25 /* Services */,
 				18A481CE2482CE3D002F6B25 /* AppDelegate.h */,
 				18A481CF2482CE3D002F6B25 /* AppDelegate.m */,
 				18A481D12482CE3D002F6B25 /* SceneDelegate.h */,
 				18A481D22482CE3D002F6B25 /* SceneDelegate.m */,
-				18A481D42482CE3D002F6B25 /* ViewController.h */,
-				18A481D52482CE3D002F6B25 /* ViewController.m */,
-				18A481D72482CE3D002F6B25 /* Main.storyboard */,
 				18A481DD2482CE3F002F6B25 /* Assets.xcassets */,
 				18A481DF2482CE3F002F6B25 /* LaunchScreen.storyboard */,
 				18A481E22482CE3F002F6B25 /* Info.plist */,
@@ -103,6 +102,23 @@
 				18A481F02482CEBB002F6B25 /* Task.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		18A481F22482F0AA002F6B25 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				18A481D42482CE3D002F6B25 /* ViewController.h */,
+				18A481D52482CE3D002F6B25 /* ViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		18A481F32482F0B0002F6B25 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18A481D72482CE3D002F6B25 /* Main.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
