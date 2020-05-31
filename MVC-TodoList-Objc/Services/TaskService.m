@@ -70,7 +70,6 @@
 	} else {
 		for(NSManagedObject *object in result) {
 			Task *task = [[Task alloc] init];
-//			NSLog(@"%@", [object valueForKey:@"isFinished"]);
 			[task completeTaskWith:[object valueForKey:@"id"] title:[object valueForKey:@"title"]  subTitle:[object valueForKey:@"subTitle"] createAt:[object valueForKey:@"createAt"]  isFinished:[object valueForKey:@"isFinished"]];
 			
 			[tasks addObject:task];
@@ -81,6 +80,7 @@
 }
 
 - (void)updateTask:(Task *)task {
+	[task toggle];
 	AppDelegate *delegate = [[AppDelegate alloc] init];
 	NSManagedObjectContext *managedContext = [delegate persistentContainer].viewContext;
 	

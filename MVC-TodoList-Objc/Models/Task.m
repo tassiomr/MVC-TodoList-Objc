@@ -11,7 +11,7 @@
 
 @implementation Task
 
-- (void)completeTask:(NSString *)uuid :(NSString *)title :(NSString *)subTitle :(NSString *)createAt :(NSNumber *)isFinished {
+- (void)completeTaskWith:(NSString *)uuid title:(NSString *)title subTitle:(NSString *)subTitle createAt:(NSString *)createAt isFinished:(NSNumber *)isFinished {
 	self.id = uuid;
 	self.title = title;
 	self.subTitle = subTitle;
@@ -19,10 +19,10 @@
 	self.isFinished = isFinished;
 }
 
-- (void)initTask:(NSString *)title :(NSString *)subTitle :(NSNumber *)isFinished {
-	NSUUID* uuid = [NSUUID UUID];
+- (void)initTaskWithTitle:(NSString *)title subTitle:(NSString *)subTitle isFinished:(NSNumber *)isFinished {
 	
-	NSDate* date = [[NSDate alloc] init];
+	NSUUID *uuid = [NSUUID UUID];
+	NSDate *date = [[NSDate alloc] init];
 	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setLocalizedDateFormatFromTemplate:@"dd.MM.yyyy"];
 	NSString* dating = [dateFormatter stringFromDate:date];
@@ -32,6 +32,19 @@
 	self.subTitle = subTitle;
 	self.createAt = dating;
 	self.isFinished = isFinished;
+	
+}
+
+- (void)toggle {
+	if([self.isFinished intValue] == 0) {
+		[self setValue:[NSNumber numberWithInt:1] forKey:@"isFinished"];
+		return;
+	}
+	
+	if([self.isFinished intValue] == 1) {
+		[self setValue:[NSNumber numberWithInt:0] forKey:@"isFinished"];
+		return;
+	}
 }
 
 @end
