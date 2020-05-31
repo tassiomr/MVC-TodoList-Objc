@@ -1,11 +1,3 @@
-//
-//  ViewController.m
-//  MVC-TodoList-Objc
-//
-//  Created by Tássio Marcos Rocha on 30/05/20.
-//  Copyright © 2020 Tássio Marcos Rocha. All rights reserved.
-//
-
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -21,6 +13,13 @@
 	cell.textLabel.text = task.title;
 	[self uiTableView].delegate = self;
 	
+	
+	if([task.isFinished intValue] == 0) {
+		cell.backgroundColor = UIColor.redColor;
+	} else {
+		cell.backgroundColor = UIColor.greenColor;
+	}
+	
 	return cell;
 }
 
@@ -28,13 +27,13 @@
 	return self.tasks.count;
 }
 
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self navigationItem].title = @"Tasks";
 	[self navigationController].navigationBar.prefersLargeTitles = true;
 	[self setupController];
 	self.service = [[TaskService alloc] init];
+	
 	[self getTasks];
 	// Do any additional setup after loading the view.
 }
@@ -51,26 +50,39 @@
 	self.navigationItem.leftBarButtonItem = button;
 }
 
+-(UIContextualAction*) createActionWithStyle: (UIContextualActionStyle) contextStyle title: (NSString*) title bgColor: (UIColor*) bgColor handler: (void (^)(void)) handler {
+	
+	UIContextualAction *action = [UIContextualAction contextualActionWithStyle:contextStyle title:title handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+		handler();
+		completionHandler(true);
+	}];
+	
+	action.backgroundColor = bgColor;
+	
+	return action;
+}
 
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UIContextualAction *edit = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Edit" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+	
+	
+	UIContextualAction *delete = [self createActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" bgColor:UIColor.orangeColor handler:^{
+//		[[self service] deleteTask:task.id];
+		[tableView reloadData];
 		return;
 	}];
 	
-	edit.backgroundColor = UIColor.magentaColor;
-	
-	UIContextualAction *finish = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Finish" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+	UIContextualAction *edit = [self createActionWithStyle:UIContextualActionStyleDestructive title:@"Edit" bgColor:UIColor.magentaColor handler:^{
 		return;
 	}];
 	
-	finish.backgroundColor = UIColor.grayColor;
-	
-	UIContextualAction *delete = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+	UIContextualAction *finish = [self createActionWithStyle:UIContextualActionStyleDestructive title:@"Finish" bgColor:UIColor.grayColor handler:^{
+		Task *task = self.tasks[indexPath.row];
+		[[self service] updateTask:task];
+		[self getTasks];
+		[tableView reloadData];
+		
 		return;
 	}];
-	
-	delete.backgroundColor = UIColor.orangeColor;
-	
 	
 	UISwipeActionsConfiguration *swipeActions = [UISwipeActionsConfiguration configurationWithActions:@[delete, finish, edit]];
 	swipeActions.performsFirstActionWithFullSwipe = FALSE;
@@ -78,14 +90,12 @@
 	return swipeActions;
 }
 
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:true];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 80;
+	return 60;
 }
 
 @end
