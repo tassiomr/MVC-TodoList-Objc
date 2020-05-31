@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, readwrite) NSString* createAt;
 @property (nonatomic, readwrite) NSNumber* isFinished;
 
--(void) completeTaskWith: (NSString* )uuid title: (NSString *) title subTitle: (NSString *) subTitle createAt: (NSString *) createAt isFinished: (NSNumber *) isFinished;
--(void) initTaskWithTitle: (NSString *) title subTitle: (NSString *) subTitle isFinished: (NSNumber *) isFinished;
+-(instancetype) initCompleteTaskWith: (NSString* )uuid title: (NSString *) title subTitle: (NSString *) subTitle createAt: (NSString *) createAt isFinished: (NSNumber *) isFinished;
+-(instancetype) initTaskWithTitle: (NSString *) title subTitle: (NSString *) subTitle isFinished: (NSNumber *) isFinished;
 -(void) toggle;
 @end
 

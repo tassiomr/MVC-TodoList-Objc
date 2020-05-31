@@ -11,27 +11,38 @@
 
 @implementation Task
 
-- (void)completeTaskWith:(NSString *)uuid title:(NSString *)title subTitle:(NSString *)subTitle createAt:(NSString *)createAt isFinished:(NSNumber *)isFinished {
-	self.id = uuid;
-	self.title = title;
-	self.subTitle = subTitle;
-	self.createAt = createAt;
-	self.isFinished = isFinished;
+- (instancetype)initCompleteTaskWith:(NSString *)uuid title:(NSString *)title subTitle:(NSString *)subTitle createAt:(NSString *)createAt isFinished:(NSNumber *)isFinished {
+	
+	if(self = [super init]) {
+		self.id = uuid;
+		self.title = title;
+		self.subTitle = subTitle;
+		self.createAt = createAt;
+		self.isFinished = isFinished;
+	}
+	
+	return self;
+	
 }
 
-- (void)initTaskWithTitle:(NSString *)title subTitle:(NSString *)subTitle isFinished:(NSNumber *)isFinished {
+- (instancetype)initTaskWithTitle:(NSString *)title subTitle:(NSString *)subTitle isFinished:(NSNumber *)isFinished {
 	
-	NSUUID *uuid = [NSUUID UUID];
-	NSDate *date = [[NSDate alloc] init];
-	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setLocalizedDateFormatFromTemplate:@"dd.MM.yyyy"];
-	NSString* dating = [dateFormatter stringFromDate:date];
+	if(self = [super init]) {
+		
+		NSUUID *uuid = [NSUUID UUID];
+		NSDate *date = [[NSDate alloc] init];
+		NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setLocalizedDateFormatFromTemplate:@"dd.MM.yyyy"];
+		NSString* dating = [dateFormatter stringFromDate:date];
+		
+		_id = [uuid UUIDString];
+		_title = title;
+		_subTitle = subTitle;
+		_createAt = dating;
+		_isFinished = isFinished;
+	}
 	
-	self.id = [uuid UUIDString];
-	self.title = title;
-	self.subTitle = subTitle;
-	self.createAt = dating;
-	self.isFinished = isFinished;
+	return self;;
 	
 }
 
