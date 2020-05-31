@@ -1,4 +1,5 @@
 #import "ViewController.h"
+#import "AddTaskViewController.h"
 
 @interface ViewController ()
 @property TaskService *service;
@@ -44,8 +45,14 @@
 	[[self uiTableView] reloadData];
 }
 
+-(void) goToPage {
+	AddTaskViewController *controller = [[self storyboard] instantiateViewControllerWithIdentifier:@"addViewController"];
+	[[self navigationController] pushViewController:controller animated:TRUE];
+}
+
 -(void)setupController {
-	UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
+	
+	UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(goToPage)];
 	
 	self.navigationItem.leftBarButtonItem = button;
 }
@@ -66,7 +73,9 @@
 	
 	
 	UIContextualAction *delete = [self createActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" bgColor:UIColor.orangeColor handler:^{
-//		[[self service] deleteTask:task.id];
+		Task *task = self.tasks[indexPath.row];
+		[[self service] deleteTask:task.id];
+		[[self tasks] removeObject:task];
 		[tableView reloadData];
 		return;
 	}];
@@ -86,7 +95,6 @@
 	
 	UISwipeActionsConfiguration *swipeActions = [UISwipeActionsConfiguration configurationWithActions:@[delete, finish, edit]];
 	swipeActions.performsFirstActionWithFullSwipe = FALSE;
-	
 	return swipeActions;
 }
 
