@@ -18,6 +18,7 @@
 		18A481F12482CEBB002F6B25 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A481F02482CEBB002F6B25 /* Task.m */; };
 		18A481F8248309F3002F6B25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A481F6248309F3002F6B25 /* Main.storyboard */; };
 		18A481FB2483B820002F6B25 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A481FA2483B820002F6B25 /* AddTaskViewController.m */; };
+		18A481FE2483D45C002F6B25 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A481FD2483D45C002F6B25 /* DetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		18A481F7248309F3002F6B25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18A481F92483B820002F6B25 /* AddTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTaskViewController.h; sourceTree = "<group>"; };
 		18A481FA2483B820002F6B25 /* AddTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
+		18A481FC2483D45C002F6B25 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		18A481FD2483D45C002F6B25 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 				18A481D52482CE3D002F6B25 /* ViewController.m */,
 				18A481F92483B820002F6B25 /* AddTaskViewController.h */,
 				18A481FA2483B820002F6B25 /* AddTaskViewController.m */,
+				18A481FC2483D45C002F6B25 /* DetailsViewController.h */,
+				18A481FD2483D45C002F6B25 /* DetailsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				18A481D62482CE3D002F6B25 /* ViewController.m in Sources */,
 				18A481D02482CE3D002F6B25 /* AppDelegate.m in Sources */,
 				18A481FB2483B820002F6B25 /* AddTaskViewController.m in Sources */,
+				18A481FE2483D45C002F6B25 /* DetailsViewController.m in Sources */,
 				18A481DC2482CE3D002F6B25 /* MVC_TodoList_Objc.xcdatamodeld in Sources */,
 				18A481D32482CE3D002F6B25 /* SceneDelegate.m in Sources */,
 			);

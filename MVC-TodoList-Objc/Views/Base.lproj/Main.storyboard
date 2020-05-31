@@ -142,10 +142,10 @@
             </objects>
             <point key="canvasLocation" x="1575" y="130"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="tZ2-IA-Qcn">
             <objects>
-                <viewController id="tX4-x2-SV7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="datailsViewController" id="tX4-x2-SV7" customClass="DetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Vs-Zy-V5n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,6 +203,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oMP-em-GWm"/>
                     </view>
+                    <connections>
+                        <outlet property="createAtLabel" destination="4AS-Nb-IH1" id="0iC-AV-YhJ"/>
+                        <outlet property="descriptionLabel" destination="yDQ-dt-iod" id="cjp-6m-aeD"/>
+                        <outlet property="isFinished" destination="IwN-WV-qKY" id="e4z-nR-xk3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GoX-Fe-za6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -1,5 +1,6 @@
 #import "ViewController.h"
 #import "AddTaskViewController.h"
+#import "DetailsViewController.h"
 
 @interface ViewController ()
 @property TaskService *service;
@@ -103,6 +104,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	DetailsViewController *controller = [[self storyboard] instantiateViewControllerWithIdentifier:@"datailsViewController"];
+	[controller setValue: self.tasks[indexPath.row] forKey:@"task"];
+	[[self navigationController] pushViewController:controller animated:true];
 	[tableView deselectRowAtIndexPath:indexPath animated:true];
 }
 
