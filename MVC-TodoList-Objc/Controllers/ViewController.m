@@ -70,8 +70,6 @@
 }
 
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	
 	UIContextualAction *delete = [self createActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" bgColor:UIColor.orangeColor handler:^{
 		Task *task = self.tasks[indexPath.row];
 		[[self service] deleteTask:task.id];
@@ -81,6 +79,9 @@
 	}];
 	
 	UIContextualAction *edit = [self createActionWithStyle:UIContextualActionStyleDestructive title:@"Edit" bgColor:UIColor.magentaColor handler:^{
+		AddTaskViewController *controller = [[self storyboard] instantiateViewControllerWithIdentifier:@"addViewController"];
+		[controller setValue: self.tasks[indexPath.row] forKey:@"task"];
+		[[self navigationController] pushViewController:controller animated:TRUE];
 		return;
 	}];
 	
