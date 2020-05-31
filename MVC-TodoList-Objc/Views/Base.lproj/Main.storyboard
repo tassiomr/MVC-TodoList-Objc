@@ -34,6 +34,9 @@
                         <viewLayoutGuide key="safeArea" id="WeO-6J-BmR"/>
                     </view>
                     <navigationItem key="navigationItem" id="9ag-X2-GG2"/>
+                    <connections>
+                        <outlet property="uiTableView" destination="Uz2-lN-2Fb" id="7k0-iu-F2h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

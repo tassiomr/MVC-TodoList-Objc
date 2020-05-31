@@ -30,13 +30,13 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	[self navigationItem].title = @"Tasks";
-	[self navigationController].navigationBar.prefersLargeTitles = true;
-	[self setupController];
-	self.service = [[TaskService alloc] init];
-	
-	[self getTasks];
 	// Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+	[self setupController];
+	[self getTasks];
+	[[self uiTableView] reloadData];
 }
 
 - (void)getTasks {
@@ -51,10 +51,13 @@
 }
 
 -(void)setupController {
-	
+	[self navigationItem].title = @"Tasks";
+	[self navigationController].navigationBar.prefersLargeTitles = true;
 	UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(goToPage)];
-	
+	self.service = [[TaskService alloc] init];
 	self.navigationItem.leftBarButtonItem = button;
+	
+	self.uiTableView.delegate = self;
 }
 
 -(UIContextualAction*) createActionWithStyle: (UIContextualActionStyle) contextStyle title: (NSString*) title bgColor: (UIColor*) bgColor handler: (void (^)(void)) handler {

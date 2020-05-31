@@ -54,6 +54,8 @@
 		[[self task] toggle];
 		[[self service] updateTask:self.task];
 	}
+	
+	[[self navigationController] popViewControllerAnimated:true];
 }
 
 /*
