@@ -25,6 +25,7 @@
 	[taskRaw setValue:task.title forKey:@"title"];
 	[taskRaw setValue:task.subTitle forKey:@"subTitle"];
 	[taskRaw setValue:task.createAt forKey:@"createAt"];
+	[taskRaw setValue:task.isFinished forKey:@"isFinished"];
 	
 	NSError *error = nil;
 	[managedContext save:&error];
@@ -69,7 +70,8 @@
 	} else {
 		for(NSManagedObject *object in result) {
 			Task *task = [[Task alloc] init];
-			[task completeTask:[object valueForKey:@"id"] :[object valueForKey:@"title"] :[object valueForKey:@"subTitle"] :[object valueForKey:@"createAt"] :[object valueForKey:@"isFinished"]];
+//			NSLog(@"%@", [object valueForKey:@"isFinished"]);
+			[task completeTaskWith:[object valueForKey:@"id"] title:[object valueForKey:@"title"]  subTitle:[object valueForKey:@"subTitle"] createAt:[object valueForKey:@"createAt"]  isFinished:[object valueForKey:@"isFinished"]];
 			
 			[tasks addObject:task];
 		}
@@ -81,21 +83,24 @@
 - (void)updateTask:(Task *)task {
 	AppDelegate *delegate = [[AppDelegate alloc] init];
 	NSManagedObjectContext *managedContext = [delegate persistentContainer].viewContext;
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id = %@", task.id]];
+	
+	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TaskEntity"];
+	[fetchRequest setPredicate: [NSPredicate predicateWithFormat:@"id = %@", task.id]];
 	
 	NSError *error = nil;
-	NSArray *results = [managedContext executeRequest:fetchRequest error:&error];
+	NSArray *results = [managedContext executeFetchRequest:fetchRequest error:&error];
 	
 	if(!results) {
 		[error userInfo];
 		abort();
 	} else {
 		NSObject *taskRaw = results[0];
+
 		[taskRaw setValue:task.id forKey:@"id"];
 		[taskRaw setValue:task.title forKey:@"title"];
 		[taskRaw setValue:task.subTitle forKey:@"subTitle"];
 		[taskRaw setValue:task.createAt forKey:@"createAt"];
+		[taskRaw setValue:task.isFinished forKey:@"isFinished"];
 		
 		[managedContext save:&error];
 	}
