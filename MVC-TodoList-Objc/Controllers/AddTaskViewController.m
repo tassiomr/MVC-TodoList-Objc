@@ -28,6 +28,9 @@
 }
 
 -(void) setup {
+	self.titleTextField.delegate = self;
+	self.descriptionTextView.delegate = self;
+	
 	if(self.task != nil) {
 		self.titleTextField.text = self.task.title;
 		self.descriptionTextView.text = self.task.subTitle;
@@ -58,14 +61,17 @@
 	[[self navigationController] popViewControllerAnimated:true];
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[[self view] endEditing:TRUE];
+	return FALSE;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+	if([text isEqualToString:@"\n"]) {
+		[textView resignFirstResponder];
+		return FALSE;
+	}
+	return TRUE;
+}
 
 @end
